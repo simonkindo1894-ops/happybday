@@ -2,7 +2,7 @@
 <html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>HBD love</title>	    
+    <title>HBD Rashi</title>	    
     <link type="text/css" rel="stylesheet" href="./file/default.css">
     <script type="text/javascript" src="./file/jquery.min.js"></script>
     <script type="text/javascript" src="./file/jscex.min.js"></script>
@@ -30,22 +30,89 @@
         <div id="wrap">
             <div id="text">
                 <div id="code">
-                    <span class="say">My beautiful wife 💞</span><br>
-                    <span class="say">Happy Birthday 🎈</span><br>
-                    <span class="say">May Allah bless you 🍀</span><br>
-                    <span class="say">And give u many happiness 💕</span><br>
-                    <span class="say">I loved you ❤️</span><br>
-                    <span class="say">And I will always love u 🥺 ❤️</span><br>
-                    <span class="say">Hope u have a great day today ❤️😘</span><br>
+                    <span class="say">Dear Rashi (Bihari baddie) 👾 
+						</span><br>
+                    <span class="say">___          </span><br>
+                    <span class="say">You’ve been becoming your best version quietly, and the way you’re carrying yourself these days truly shows it. Seeing everything you’ve overcome honestly makes me proud, and I hope this year brings you even more wins, peace, and people who truly treat you right 😉 </span><br>
+                    <span class="say">And honestly, being your friend has genuinely been a privilege. We’ve boosted each other so much it honestly feels like the universe syncing up. I’m really glad we crossed paths 💕</span><br>
+                    <span class="say">Sending you all the good vibes today — and remember, if life ever throws anything messy at you, just blame the universe and keep moving forward 🤷‍♀️✨</span><br>
+                    <span class="say">  Take care of yourself, okay? And just so you know… I’ll always be rooting for you, girl 🌼🤍    </span><br>
+                    <span class="say"></span><br>
                 </div>
             </div>
             <div id="clock-box">
-                <span id="clock">577 days 0 hours 0 minutes 0 seconds</span> <!-- Change to "6940 days..." if needed -->
+                <span id="clock">Officially 7,305 days of pure awesomeness</span> <!-- Change to "6940 days..." if needed -->
             </div>
             <canvas id="canvas" width="1100" height="680"></canvas>
         </div>
     </div>
 
+<script>
+(function(){
+  // 2x speed (duration × 0.5)
+  const speedFactor = 0.5;
+
+  function scaleTimeValue(val) {
+    if (!val) return val;
+    return val.split(',').map(v => {
+      v = v.trim();
+      if (v.endsWith('ms')) {
+        const n = parseFloat(v.slice(0,-2));
+        return Math.max(1, Math.round(n * speedFactor)) + 'ms';
+      }
+      if (v.endsWith('s')) {
+        const n = parseFloat(v.slice(0,-1));
+        return (Math.max(0.001, n * speedFactor)).toFixed(3).replace(/\.?0+$/,'') + 's';
+      }
+      return v;
+    }).join(', ');
+  }
+
+  const all = document.querySelectorAll('*');
+  all.forEach(el => {
+    try {
+      const cs = getComputedStyle(el);
+      const map = {
+        animationDuration: 'animation-duration',
+        animationDelay: 'animation-delay',
+        transitionDuration: 'transition-duration',
+        transitionDelay: 'transition-delay'
+      };
+      Object.keys(map).forEach(prop => {
+        const cur = cs[prop];
+        if (cur && cur !== '0s') {
+          el.style.setProperty(map[prop], scaleTimeValue(cur), 'important');
+        }
+      });
+    } catch(e){}
+  });
+
+  const root = document.documentElement;
+  const rs = getComputedStyle(root);
+  for (let i=0; i<rs.length; i++) {
+    const name = rs[i];
+    const val = rs.getPropertyValue(name).trim();
+    if (!val) continue;
+    if ((name.toLowerCase().includes('duration') || name.toLowerCase().includes('time') || name.toLowerCase().includes('speed'))
+        && (val.endsWith('s') || val.endsWith('ms'))) {
+      try { root.style.setProperty(name, scaleTimeValue(val)); } catch(e){}
+    }
+  }
+
+  const origSetTimeout = window.setTimeout.bind(window);
+  const origSetInterval = window.setInterval.bind(window);
+  window.setTimeout = function(fn, t, ...args) {
+    if (typeof t !== 'number') return origSetTimeout(fn, t, ...args);
+    return origSetTimeout(fn, Math.max(1, Math.round(t * speedFactor)), ...args);
+  };
+  window.setInterval = function(fn, t, ...args) {
+    if (typeof t !== 'number') return origSetInterval(fn, t, ...args);
+    return origSetInterval(fn, Math.max(1, Math.round(t * speedFactor)), ...args);
+  };
+
+})();
+</script>
+	
     <script>
     (function() {
         var canvas = $('#canvas');
