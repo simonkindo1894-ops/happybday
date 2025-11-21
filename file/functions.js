@@ -29,7 +29,7 @@ $(window).resize(function() {
 				if (progress >= str.length) {
 					clearInterval(timer);
 				}
-			}, 75);
+			}, 35);
 		});
 		return this;
 	};
